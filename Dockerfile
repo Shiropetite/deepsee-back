@@ -1,4 +1,3 @@
-# Étape de build
 FROM node:22 AS build-stage
 WORKDIR /app
 COPY package*.json ./
@@ -6,7 +5,6 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Étape production
 FROM node:22-alpine
 WORKDIR /app
 COPY --from=build-stage /app/dist ./dist
